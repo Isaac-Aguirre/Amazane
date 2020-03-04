@@ -14,7 +14,12 @@
   "author": "Isaac Aguirre",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "express-handlebars": "^3.1.0",
     "mysql2": "^1.6.4",
     "sequelize": "^4.41.2"
   },
