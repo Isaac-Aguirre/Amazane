@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     category:{
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: false
     },
@@ -28,17 +28,21 @@ module.exports = (sequelize, DataTypes) => {
         min: 0
       }
     },
-    description:{
-      type: DataTypes.TEXT,
+    price:{
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate:{
-        len:[1,200]
+        min: 1
       }
     },
     picture:{
-      type: DataTypes.BLOB,
-      allowNull: true
-    }
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate:{
+
+      }
+    },
+
   });
   return Item;
 };

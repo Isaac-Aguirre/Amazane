@@ -16,7 +16,7 @@ module.exports = (app) => {
     }).then( (dbItem) => {
       res.json(dbItem);
     });
-  })
+  });
 
   app.get("/api/items/:name", (req,res)=>{
     db.Item.findOne({
