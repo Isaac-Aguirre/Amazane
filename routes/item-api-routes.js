@@ -2,6 +2,10 @@ var db = require("../models/");
 
 module.exports = (app) => {
 
+  app.get("/api/viewInventory", (req, res) => {
+    res.sendFile("../assets/inventory.json");
+  });
+
   app.get("/api/items/all", (req,res) =>{
     db.Item.findAll({}).then((dbItem) => {
       res.json(dbItem);

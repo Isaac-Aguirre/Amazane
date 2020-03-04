@@ -1,14 +1,14 @@
 {
-  "name": "Amazane",
+  "name": "Project2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Isaac-Aguirre/Amazane.git"
+    "url": "git+https://github.com/Isaac-Aguirre/Project2.git"
   },
   "keywords": [],
   "author": "Isaac Aguirre",
@@ -24,7 +24,7 @@
     "sequelize": "^4.41.2"
   },
   "bugs": {
-    "url": "https://github.com/Isaac-Aguirre/Amazane/issues"
+    "url": "https://github.com/Isaac-Aguirre/Project2/issues"
   },
-  "homepage": "https://github.com/Isaac-Aguirre/Amazane#readme"
+  "homepage": "https://github.com/Isaac-Aguirre/Project2#readme"
 }
