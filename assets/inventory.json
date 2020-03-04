@@ -1,0 +1,17 @@
+[
+  {
+    img-link: "https://stockx.imgix.net/adidas-Yeezy-Boost-350-V2-Tail-Light.png?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1581611177",
+    name: "adidas Yeezy Boost 350 V2 Tail Light",
+    price: 300,
+    category: "shoes"
+  },
+{},
+{},
+{}
+]
+
+img-link: string
+name: string
+price: integer
+category: "shoes", "t-shirts", "sweatshirts", "bottoms", "accessories"
+
