@@ -16,7 +16,7 @@ module.exports = (app) => {
     }).then( (dbItem) => {
       res.json(dbItem);
     });
-  });
+  })
 
   app.get("/api/items/:name", (req,res)=>{
     db.Item.findOne({
@@ -58,7 +58,7 @@ module.exports = (app) => {
   app.put("/api/items", (req,res) => {
     db.Item.update(req.body,{
       where:{
-        sku: = req.body.sku
+        sku:  req.body.sku
       }
     }).then((dbItem) => {
       res.json(dbItem);
