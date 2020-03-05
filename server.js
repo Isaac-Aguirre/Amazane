@@ -1,35 +1,48 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
-// *** Dependencies
-// =============================================================
-var express = require("express");
+// Dependencies
+const express = require('express');
+const passportConfig = require('./config/passport-config');
+const db = require('./models');
+const passport = require('passport');
+const keys = require('./config/keys');
+const cookieSession = require('cookie-session');
+const expressLayouts = require('express-ejs-layouts');
 
 // Sets up the Express App
 // =============================================================
-var app = express();
-var PORT = process.env.PORT || 8080;
-
-// Requiring our models for syncing
-var db = require("./models");
+const app = express();
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Static directory
-app.use(express.static("public"));
+// EJS
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+
+// Cookie-session
+// takes an object as a parameter:
+// { 
+//   maxAge: int in ms
+//   keys: [ encryptedKey string ]
+// }
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey]
+}));
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
-// =============================================================
-require("./routes/html-routes.js")(app);
-// require("./routes/user-api-routes.js")(app);
-// require("./routes/item-api-routes.js")(app);
-// require("./routes/cart-api-routes.js")(app);
+app.use(express.static("public"));
+app.use('/', require('./routes/html-routes.js'));
+app.use('/auth', require('./routes/auth-routes'));
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
+const PORT = process.env.PORT || 3000;
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
