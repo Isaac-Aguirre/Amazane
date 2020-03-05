@@ -2,8 +2,27 @@ var db = require("../models/");
 
 module.exports = (app) => {
 
-  app.get("/api/viewInventory", (req, res) => {
-    res.sendFile("../assets/inventory.json");
+  // When /api/pushInventory is GET,
+  // Drop existing Item table and push items in 'assets/inventory.json'
+  app.get("/api/pushInventory", async (req, res) => {
+    try {
+      const inventory = await JSON.parse(fs.readFileSync('assets/inventory.json', "utf-8"));
+    
+      for(let i = 0; i < inventory.length; i++) {
+        db.Item.create({
+          name: inventory[i].name,
+          category: inventory[i].category,
+          quantity: Math.floor(Math.random() * 10) + 1,
+          price: inventory[i].price,
+          picture: inventory[i]['img-link']
+        });
+      }
+      
+      res.status(204).end();
+    }
+    catch(err) {
+      if(err) res.send(err);
+    }
   });
 
   app.get("/api/items/all", (req,res) =>{
