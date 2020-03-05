@@ -14,13 +14,14 @@
   "author": "Isaac Aguirre",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
-    "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.4",
-    "dotenv": "^8.2.0",
+    "cookie-session": "^1.4.0",
+    "ejs": "^3.0.1",
     "express": "^4.16.3",
+    "express-ejs-layouts": "^2.5.0",
     "express-handlebars": "^3.1.0",
     "mysql2": "^1.6.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "sequelize": "^4.41.2"
   },
   "bugs": {
