@@ -1,7 +1,11 @@
 const router = require('express').Router();
+const db = require('../models');
 
 router.get('/', (req, res) => {
-  res.render('shop');
+  db.Item.findAll({}).then(function(items) {
+    console.log(items);
+    res.render('shop', items);
+  });
 });
 
 router.get('/team', (req, res) => {

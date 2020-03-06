@@ -6,7 +6,7 @@ module.exports = (app) => {
   // Drop existing Item table and push items in 'assets/inventory.json'
   app.get("/api/pushInventory", async (req, res) => {
     try {
-      const inventory = await JSON.parse(fs.readFileSync('assets/inventory.json', "utf-8"));
+      const inventory = await JSON.parse(fs.readFileSync('assets/inventory.js', "utf-8"));
     
       for(let i = 0; i < inventory.length; i++) {
         db.Item.create({
