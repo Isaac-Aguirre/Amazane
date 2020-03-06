@@ -1,15 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const Item = sequelize.define("Item",{
-    sku:{
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      primaryKEY: true,
-      validate:{
-        isNumeric: true,
-        len: [5,10]
-      }
-    },
     name:{
       type: DataTypes.STRING,
       allowNull: false,

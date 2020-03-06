@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "Armen",
-    "password": "password",
+    "username": "root",
+    "password": "myPass",
     "database": "Amazane",
     "host": "127.0.0.1",
     "dialect": "mysql",

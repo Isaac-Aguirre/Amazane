@@ -1,17 +1,15 @@
 <link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Dosis|Inconsolata|Roboto+Mono&display=swap" rel="stylesheet">
-<div class="row">
+<div class="row flex">
     {{#each items}}
-    <div class="col s10 m4">
-        <div class="card medium">
-            <div class="card-image">
-                <img src={{img-link}}>
+    <div class="col s10 m6 l3">
+        <div class="card-panel">
+            <div class="card-image item-image">
+                <img class="responsive-img" src={{picture}}>
+                <span class="card-title"><p style="font-size: 16px;">{{name}}</p></span>
             </div>
-            <div class="card-content" style="font-family: 'Chakra Petch', sans-serif;">
-                <p style="font-size: 16px">{{name}}</p>
-                <p style="font-size: 14px">${{price}}</p>
-            </div>
-            <div class="card-action pink lighten-2">
-                <a href="#"><span class="white-text text-darken-2">Add to Cart</span></a>
+            <div style="font-family: 'Chakra Petch', sans-serif;">
+                <p style="font-size: 12px;">${{price}}</p>
+                <div><a class="waves-effect waves-light btn pink lighten-2"><i class="material-icons right">add</i>Add to Cart</a></div>
             </div>
         </div>
     </div>
