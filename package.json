@@ -1,10 +1,11 @@
 {
-  "name": "Project2",
+  "name": "project2",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,6 @@
     "ejs": "^3.0.1",
     "express": "^4.16.3",
     "express-ejs-layouts": "^2.5.0",
-    "express-handlebars": "^3.1.0",
     "mysql2": "^1.6.4",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/Isaac-Aguirre/Project2/issues"
   },
-  "homepage": "https://github.com/Isaac-Aguirre/Project2#readme"
+  "homepage": "https://github.com/Isaac-Aguirre/Project2#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
