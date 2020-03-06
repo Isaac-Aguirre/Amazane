@@ -5,7 +5,7 @@ const db = require('./models');
 const passport = require('passport');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
-const expressLayouts = require('express-ejs-layouts');
+const handlebars = require('express-handlebars');
 
 // Sets up the Express App
 // =============================================================
@@ -15,9 +15,9 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// EJS
-app.set('view engine', 'ejs');
-app.use(expressLayouts);
+// Handlebars
+app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Cookie-session
 // takes an object as a parameter:
