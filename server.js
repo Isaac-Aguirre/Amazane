@@ -41,6 +41,7 @@ app.use('/auth', require('./routes/auth-routes'));
 app.use('/profile', require('./routes/profile-routes'));
 
 
+
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 const PORT = process.env.PORT || 3000;

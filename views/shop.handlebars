@@ -1,1 +1,19 @@
-<h1>shop</h1>
+<link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Dosis|Inconsolata|Roboto+Mono&display=swap" rel="stylesheet">
+<div class="row">
+    {{#each items}}
+    <div class="col s10 m4">
+        <div class="card medium">
+            <div class="card-image">
+                <img src={{img-link}}>
+            </div>
+            <div class="card-content" style="font-family: 'Chakra Petch', sans-serif;">
+                <p style="font-size: 16px">{{name}}</p>
+                <p style="font-size: 14px">${{price}}</p>
+            </div>
+            <div class="card-action pink lighten-2">
+                <a href="#"><span class="white-text text-darken-2">Add to Cart</span></a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
