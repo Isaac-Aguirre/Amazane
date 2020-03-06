@@ -24,8 +24,8 @@ passport.use(
       // If a user is found
       if(dbUser) {
         console.log('user exists:');
-        console.log(dbUser);
-        done(null, dbUser);
+        console.log(dbUser.dataValues);
+        done(null, dbUser.dataValues);
       }
       // If user does not exist, register the user
       else {
@@ -34,8 +34,8 @@ passport.use(
           username: profile.displayName
         }).then((dbUser) => {
           console.log('user created:');
-          console.log(dbUser);
-          done(null, dbUser);
+          console.log(dbUser.dataValues);
+          done(null, dbUser.dataValues);
         });
       }
     })
@@ -44,8 +44,7 @@ passport.use(
 
 // Handles token login
 passport.serializeUser((user, done) => {
-  // console.log(user);
-  done(null, user);
+  done(null, user.id);
 });
 
 // Handles token logout

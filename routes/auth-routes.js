@@ -25,8 +25,7 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-  console.log(req.user);
-  res.send('you reached the callback URI');
+  res.redirect('/profile/');
 }); 
 
 module.exports = router;
