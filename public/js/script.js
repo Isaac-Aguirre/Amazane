@@ -1,4 +1,7 @@
 $(document).ready(() => {
+  // Initialization
+  $('select').formSelect();
+
   $(".load-database").on('click', function(event) {
     event.preventDefault();
     $.ajax({
