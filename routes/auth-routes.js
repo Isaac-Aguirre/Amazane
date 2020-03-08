@@ -16,6 +16,15 @@ router.get('/logout', (req, res) => {
   res.send('logging out');
 });
 
+router.get('/register', (req, res) => {
+  res.render('register', { userId: 0 });
+});
+
+// Register route from Google Login
+router.get('/register/:id', (req, res) => {
+  res.render('register', { userId: req.params.id });
+});
+
 // auth with Google
 // passport.authenticate gets two params:
 // param1: strategy 'google'

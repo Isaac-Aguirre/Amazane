@@ -1,17 +1,19 @@
 <link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Dosis|Inconsolata|Roboto+Mono&display=swap" rel="stylesheet">
-<div class="row flex">
+<div class="row">
     {{#each items}}
-    <div class="col s10 m6 l3">
-        <div class="card-panel">
-            <div class="card-image item-image">
-                <img class="responsive-img" src={{picture}}>
-                <span class="card-title"><p style="font-size: 16px;">{{name}}</p></span>
+    <div class="col s10 offset-s1 m6 l3 item">
+        <div class="card small" style="background: url('{{picture}}'); background-size: 100%; background-position: center top 10px; background-repeat: no-repeat; background-">
+            <div class="card-action">
+               <span class="card-title activator grey-text text-darken-4 truncate">{{name}}<i class="material-icons right">more_vert</i></span>
             </div>
-            <div style="font-family: 'Chakra Petch', sans-serif;">
-                <p style="font-size: 12px;">${{price}}</p>
-                <div><a class="waves-effect waves-light btn pink lighten-2"><i class="material-icons right">add</i>Add to Cart</a></div>
+            <div class="card-reveal">
+                <span class="card-title"><i class="material-icons right">close</i></span>
+                <p style="font-size: 20px;">{{name}}</p>
+                <p style="font-weight: bold;">${{price}}</p>
+                <a class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add to Cart</a>
             </div>
         </div>
     </div>
     {{/each}}
+    <a class="waves-effect waves-light btn load-database"><i class="material-icons right">add</i>Load Database</a>
 </div>

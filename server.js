@@ -39,7 +39,7 @@ app.use(express.static("public"));
 app.use('/', require('./routes/html-routes.js'));
 app.use('/auth', require('./routes/auth-routes'));
 app.use('/profile', require('./routes/profile-routes'));
-app.use('/api', require('./routes/api.js'))
+app.use('/api', require('./routes/api-routes'))
 
 
 // Syncing our sequelize models and then starting our Express app

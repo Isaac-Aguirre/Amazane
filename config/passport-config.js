@@ -23,18 +23,13 @@ passport.use(
     }).then( (dbUser) => {
       // If a user is found
       if(dbUser) {
-        console.log('user exists:');
-        console.log(dbUser.dataValues);
         done(null, dbUser.dataValues);
       }
       // If user does not exist, register the user
       else {
         db.User.create({
-          googleId: profile.id,
-          username: profile.displayName
+          googleId: profile.id
         }).then((dbUser) => {
-          console.log('user created:');
-          console.log(dbUser.dataValues);
           done(null, dbUser.dataValues);
         });
       }
@@ -44,11 +39,15 @@ passport.use(
 
 // Handles token login
 passport.serializeUser((user, done) => {
+  console.log('serializeUser Fired, `user` variable:');
+  console.log(user);
   done(null, user.id);
 });
 
 // Handles token logout
 passport.deserializeUser((id, done) => {
+  console.log('DEserializeUser Fired, `id` variable:');
+  console.log(id);
   db.User.findOne({
     where: {
       id: id

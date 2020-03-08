@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const fs = require('fs');
-const db = require("../models/");
+const db = require("../models");
 
 // When /api/pushInventory is GET,
 // Drop existing Item table and push items in 'assets/inventory.json'
