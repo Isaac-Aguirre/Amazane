@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/carts', (req, res) => {
-  res.render('carts');
+router.get('/cart', (req, res) => {
+  res.render('cart');
 });
 
 module.exports = router;

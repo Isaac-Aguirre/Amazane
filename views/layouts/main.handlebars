@@ -12,38 +12,39 @@
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js'></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="/public/css/style.css">
+
 
   <title>Amazane</title>
 </head>
 
 <body>
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a href="/log_in">Log-in</a></li>
-    <li><a href="/sign_up">Sign-up</a></li>
-    <li class="divider"></li>
-
-  </ul>
-
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper cyan lighten-2">
       <a href='/' class="brand-logo">Amazane</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/">Shop</a></li>
         <li><a href="/auth/login">Login</a></li>
-        <a href='/cart'><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a href='/cart'><i class="fas fa-shopping-cart"></i></a></li>
       </ul>
     </div>
   </nav>
 
+  <ul class="sidenav" id="mobile-demo">
+      <li><a href="/">Shop</a></li>
+      <li><a href="/auth/login">Login</a></li>
+      <li><a href='/cart'>Cart</a></li>
+  </ul>
+
   {{{body}}}
 
-  <footer class="page-footer">
+  <footer class="page-footer pink lighten-2">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Project Amazane</h5>
-          <p class="grey-text text-lighten-4">Simple Web shop made with <i class="fab fa-node-js fa-1x"></i> Node.js, Express, and MySQL</p>
+          <p class="grey-text text-lighten-4">Simple Web shop made with <i class="fab fa-node-js fa-1x"></i> Node.js,
+            Express, and MySQL</p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
@@ -57,7 +58,8 @@
     <div class="footer-copyright">
       <div class="container">
         © 2020 UCLA Bootcamp Full Stack Flex
-        <a class="grey-text text-lighten-4 right" target="_blank" href="https://bootcamp.uclaextension.edu/coding/">Link to Bootcamp</a>
+        <a class="grey-text text-lighten-4 right" target="_blank" href="https://bootcamp.uclaextension.edu/coding/">Link
+          to Bootcamp</a>
       </div>
     </div>
   </footer>
