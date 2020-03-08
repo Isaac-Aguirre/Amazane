@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const fs = require('fs');
+const fs = require("fs");
 const db = require("../models");
 
 // When /api/pushInventory is GET,
@@ -91,72 +91,72 @@ router.put("/items/:id", (req, res) => {
 
 // ORDERS
 
-router.get("/orders", (req,res) => {
-  db.Order.findAll({}).then ((dbOrder) => {
-      res.json(dbORder);
+router.get("/orders", (req, res) => {
+  db.Order.findAll({}).then(dbOrder => {
+    res.json(dbORder);
   });
 });
 
-router.get("/orders/user/:user", (req,res) =>{
+router.get("/orders/user/:user", (req, res) => {
   db.Order.findAll({
-      where:{
-          userID: req.params.user
-      }
-  }).then((dbOrder) => {
-      res.json(dbOrder);
+    where: {
+      userID: req.params.user
+    }
+  }).then(dbOrder => {
+    res.json(dbOrder);
   });
 });
 
-router.get("/orders/orderNum/:orderNum", (req,res) =>{
+router.get("/orders/orderNum/:orderNum", (req, res) => {
   db.Order.findAll({
-      where:{
-          orderNum: req.params.orderNum
-      }
-  }).then((dbOrder) => {
-      res.json(dbOrder);
+    where: {
+      orderNum: req.params.orderNum
+    }
+  }).then(dbOrder => {
+    res.json(dbOrder);
   });
 });
 
-router.post("/orders", (req,res) => {
-  db.Order.create(req.body).then((dbOrder) => {
-      console.log(dbOrder);
-      res.json(dbOrder);
+router.post("/orders", (req, res) => {
+  db.Order.create(req.body).then(dbOrder => {
+    console.log(dbOrder);
+    res.json(dbOrder);
   });
 });
-
 
 // USERS
 
 router.get("/users/:username", (req, res) => {
-  db.User.findOne({where:{username: req.params.username}}).then( (dbUser) => {
+  db.User.findOne({ where: { username: req.params.username } }).then(dbUser => {
     res.json(dbUser);
   });
 });
 
-router.delete("/users/:username", (req,res) => {
+router.delete("/users/:username", (req, res) => {
   db.User.destroy({
-    where:{
+    where: {
       username: req.params.username
     }
-  }).then( (dbUser) => {
-    res.json(dbUser)
+  }).then(dbUser => {
+    res.json(dbUser);
   });
 });
 
-router.post("/users", (req,res) => {
-  db.User.create(req.body).then( (dbUser) => {
+router.post("/users", (req, res) => {
+  db.User.create(req.body).then(dbUser => {
     console.log(dbUser);
     res.json(dbUser);
   });
 });
 
-router.put("/users/:id", (req,res) => {
-db.User.update(req.body,{
-  where:{
-    id: req.params.id
-  }
-}).then( (dbUser) => {
-  res.json(dbItem);
+router.put("/users/:id", (req, res) => {
+  db.User.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  }).then(dbUser => {
+    res.json(dbItem);
+  });
 });
-});
+
 module.exports = router;

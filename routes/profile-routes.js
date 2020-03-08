@@ -2,9 +2,11 @@ const router = require('express').Router();
 const db = require('../models');
 
 const checkAuth = (req, res, next) => {
+  console.log("req.user");
+  console.log(req.user);
   // If a user is not yet registered
   if(!req.user.dataValues.isRegistered) {
-    res.redirect('/auth/register/' + req.user.dataValues.id);
+    res.render('register', { user: req.user.dataValues });
   }
   else {
     next();
@@ -12,7 +14,9 @@ const checkAuth = (req, res, next) => {
 };
 
 router.get('/', checkAuth, (req, res) => {
-  res.render('profile', { user: req.User});
+  console.log("req.user");
+  console.log(req.user);
+  res.render('profile', { user: req.user });
 });
 
 module.exports = router;

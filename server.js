@@ -27,7 +27,7 @@ app.set("view engine", "handlebars");
 // }
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
-  keys: [keys.session.cookieKey]
+  keys: [keys.session.cookieEncryptKey]
 }));
 
 // Passport Middleware

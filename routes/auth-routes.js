@@ -30,7 +30,7 @@ router.get('/register/:id', (req, res) => {
 // param1: strategy 'google'
 // param2: options (set scope)
 router.get('/google', passport.authenticate('google', {
-  scope: ['profile']
+  scope: ['profile', 'email']
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {

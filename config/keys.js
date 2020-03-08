@@ -7,7 +7,7 @@ module.exports = {
     clientSecret: 'VspQ1btQ2lv86YNkMQPP-WxE'
   },
   session: {
-    cookieKey: 'as$@o(#@R3nrklfasdi30!)@sfnls'
+    cookieEncryptKey: 'as$@o(#@R3nrklfasdi30!)@sfnls'
   }
 
 };
