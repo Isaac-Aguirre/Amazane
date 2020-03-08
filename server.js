@@ -6,6 +6,7 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const handlebars = require('express-handlebars');
+const path = require('path');
 
 // Sets up the Express App
 // =============================================================
@@ -35,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname,"public")));
 app.use('/', require('./routes/html-routes.js'));
 app.use('/auth', require('./routes/auth-routes'));
 app.use('/profile', require('./routes/profile-routes'));
