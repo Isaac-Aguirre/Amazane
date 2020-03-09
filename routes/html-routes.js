@@ -26,12 +26,12 @@ router.get("/:name?", (req, res) => {
   });
 });
 
-router.post('/cart', (req, res) => {
+router.post('/apii/cart', (req, res) => {
   cart.push(req.body);
   res.status(204).end();
 });
 
-router.delete('/cart/:id', (req,res) => {
+router.delete('/apii/cart/:id', (req,res) => {
   let ids = cart.map(item => item.id);
   let index = ids.indexOf(req.params.id);
 
@@ -45,6 +45,9 @@ router.get('/getCartCount', (req, res) => {
   res.send(cart.length);
 });
 
+router.get('/apii/cart', (req, res) => {
+  res.json(cart);
+})
 
 router.get('/cart', (req, res) => {
   res.render('cart', { cart: cart });
