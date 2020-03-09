@@ -20,9 +20,6 @@ router.get('/', checkAuth, (req, res) => {
   res.render('profile', { user: req.user.dataValues });
 });
 
-
-
-
 module.exports = router;
 
 

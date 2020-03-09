@@ -3,6 +3,13 @@ $(document).ready(() => {
   $('select').formSelect();
   $(".dropdown-trigger").dropdown();
   
+  $(document).on('keypress',function(event) {
+    if(event.which == 13 && $("#search_input").val().trim() != "") {
+      event.preventDefault();
+      location.replace(`/${$("#search_input").val().trim()}`);
+    }
+});
+
   $(".search-button").on('click', function(event) {
     event.preventDefault();
     location.replace(`/${$("#search_input").val().trim()}`);

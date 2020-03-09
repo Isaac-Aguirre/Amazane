@@ -2,30 +2,6 @@ const router = require('express').Router();
 const db = require('../models');
 let cart = [];
 
-router.get("/:name?", (req, res) => {
-  db.Item.findAll({}).then(function(items) {
-    let hbsObj = items.map(item => { return item.dataValues; });
-    if (hbsObj.length) {
-      if (req.params.name) {
-        hbsObj = hbsObj.filter(item => {
-          let words = item.name.split(' ');
-          words = words.map( word => {  return word.toLowerCase() });
-        
-          if( words.indexOf(req.params.name.toLowerCase()) != -1 ) {
-            return true;
-          }
-        });
-        res.render("shop", { items: hbsObj, cart: cart });
-      }
-      else {
-        res.render("shop", { items: hbsObj, cart: cart });
-      }
-    } else {
-      res.render("shop", { cart: cart });
-    }
-  });
-});
-
 router.post('/apii/cart', (req, res) => {
   cart.push(req.body);
   res.status(204).end();
@@ -51,6 +27,30 @@ router.get('/apii/cart', (req, res) => {
 
 router.get('/cart', (req, res) => {
   res.render('cart', { cart: cart });
+});
+
+router.get("/:name?", (req, res) => {
+  db.Item.findAll({}).then(function(items) {
+    let hbsObj = items.map(item => { return item.dataValues; });
+    if (hbsObj.length) {
+      if (req.params.name) {
+        hbsObj = hbsObj.filter(item => {
+          let words = item.name.split(' ');
+          words = words.map( word => {  return word.toLowerCase() });
+        
+          if( words.indexOf(req.params.name.toLowerCase()) != -1 ) {
+            return true;
+          }
+        });
+        res.render("shop", { items: hbsObj, cart: cart });
+      }
+      else {
+        res.render("shop", { items: hbsObj, cart: cart });
+      }
+    } else {
+      res.render("shop", { cart: cart });
+    }
+  });
 });
 
 module.exports = router;

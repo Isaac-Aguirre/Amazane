@@ -46,10 +46,10 @@ app.use(function (req,res, next) {
 
 // Routes
 app.use(express.static(path.join(__dirname,"public")));
-app.use('/', require('./routes/html-routes.js'));
 app.use('/auth', require('./routes/auth-routes'));
 app.use('/profile', require('./routes/profile-routes'));
-app.use('/api', require('./routes/api-routes'))
+app.use('/api', require('./routes/api-routes'));
+app.use('/', require('./routes/html-routes.js'));
 
 
 // Syncing our sequelize models and then starting our Express app
