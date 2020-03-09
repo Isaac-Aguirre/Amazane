@@ -1,6 +1,7 @@
 $(document).ready(() => {
   // Initialization
   $('select').formSelect();
+  $(".dropdown-trigger").dropdown();
 
   $(".load-database").on('click', function(event) {
     event.preventDefault();
@@ -18,9 +19,7 @@ $(document).ready(() => {
 
     const firstname = $("#firstname_input").val().trim();
     const lastname = $("#lastname_input").val().trim();
-    const username = $("#username_input").val().trim();
-    const password = $("#password_input").val().trim();
-    const confirmPassword = $("#confirm_password_input").val().trim();
+    const nickname = $("#nickname_input").val().trim();
     const email = $("#email_input").val().trim();
     const address = $("#address_input").val().trim();
     const city = $("#city_input").val().trim();
@@ -33,8 +32,7 @@ $(document).ready(() => {
     const newUser = {
       first_name: firstname,
       last_name: lastname,
-      username: username,
-      password: password,
+      nickname: nickname,
       email: email,
       address: address,
       city: city,

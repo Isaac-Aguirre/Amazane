@@ -28,7 +28,7 @@
         <li><a href="/profile">{{globalUsername}}</a></li>
         <li><a href="/auth/logout">Logout</a></li>
         {{else}}
-        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/google">Login with <i class="fab fa-google"></i>oogle+</a></li>
         {{/if}}
         <li><a href='/cart'><i class="fas fa-shopping-cart"></i></a></li>
       </ul>
@@ -36,9 +36,14 @@
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-      <li><a href="/">Shop</a></li>
-      <li><a href="/auth/login">Login</a></li>
-      <li><a href='/cart'>Cart</a></li>
+        <li><a href="/">Shop</a></li>
+        {{#if login}}
+        <li><a href="/profile">{{globalUsername}}</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        {{else}}
+        <li><a href="/auth/google">Login with <i class="fab fa-google"></i>oogle+</a></li>
+        {{/if}}
+        <li><a href='/cart'>Cart</a></li>
   </ul>
 
   {{{body}}}
