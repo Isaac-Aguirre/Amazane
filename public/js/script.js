@@ -13,7 +13,7 @@ $(document).ready(() => {
     });
   });
 
-  $(".register-user").on('click', function(event) {
+  $(".register-button").on('click', function(event) {
     event.preventDefault();
 
     const firstname = $("#firstname_input").val().trim();
@@ -23,13 +23,13 @@ $(document).ready(() => {
     const confirmPassword = $("#confirm_password_input").val().trim();
     const email = $("#email_input").val().trim();
     const address = $("#address_input").val().trim();
-    const city = $("city_input").val().trim();
+    const city = $("#city_input").val().trim();
     const state = $("#state_input").val();
     
     //
     // validation
     //
-    
+   
     const newUser = {
       first_name: firstname,
       last_name: lastname,
@@ -41,6 +41,8 @@ $(document).ready(() => {
       state: state,
       isRegistered: true
     }
+
+    console.log(newUser);
 
     $.ajax({
       url: '/api/users/' + $(this).data('id'),

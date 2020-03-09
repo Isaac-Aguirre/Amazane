@@ -155,7 +155,9 @@ router.put("/users/:id", (req, res) => {
       id: req.params.id
     }
   }).then(dbUser => {
-    res.json(dbItem);
+    console.log('user registered successfully, dbUser:');
+    console.log(dbUser);
+    res.render('profile', { user: dbUser.dataValues });
   });
 });
 
