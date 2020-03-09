@@ -2,6 +2,11 @@ $(document).ready(() => {
   // Initialization
   $('select').formSelect();
   $(".dropdown-trigger").dropdown();
+  
+  $(".search-button").on('click', function(event) {
+    event.preventDefault();
+    location.replace(`/${$("#search_input").val().trim()}`);
+  });
 
   $(".load-database").on('click', function(event) {
     event.preventDefault();
@@ -54,3 +59,7 @@ $(document).ready(() => {
   });
 
 });
+
+
+
+

@@ -41,8 +41,6 @@ app.use(function (req,res, next) {
   if(req.user){
     res.locals.globalUsername = req.user.dataValues.username;
   }
-  console.log("this is the req")
-  console.log(req.user);
   next();
   });
 
