@@ -39,7 +39,7 @@ app.use(passport.session());
 app.use(function (req,res, next) {
   res.locals.login = req.isAuthenticated();
   if(req.user){
-    res.locals.globalUsername = req.user.dataValues.username;
+    res.locals.globalUsername = req.user.dataValues.nickname;
   }
   next();
   });
