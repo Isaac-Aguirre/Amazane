@@ -1,20 +1,26 @@
 <div class="row" style="margin-top: 20px;">
     <div class="col s12 m8 offset-m2 l6 offset-l3">
+        {{#if cart}}
+        <h1>Cart empty.</h1>
+        {{#else}}
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
                     <th>Item Name</th>
-                    <th>Item Price</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
                 </tr>
             </thead>
             <tbody>
+                {{#each carts}}
                 <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
+                    <td>{{name}}</td>
+                    <td>{{price}}</td>
+                    <td>1</td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
+        {{/if}}
     </div>
 </div>
