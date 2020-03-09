@@ -24,7 +24,12 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/">Shop</a></li>
+        {{#if login}}
+        <li><a href="/profile">{{globalUsername}}</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        {{else}}
         <li><a href="/auth/login">Login</a></li>
+        {{/if}}
         <li><a href='/cart'><i class="fas fa-shopping-cart"></i></a></li>
       </ul>
     </div>

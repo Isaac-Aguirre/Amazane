@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const db = require('../models');
 
+
 const checkAuth = (req, res, next) => {
   console.log("req.user from checkAuth");
   console.log(req.user);
@@ -16,8 +17,11 @@ const checkAuth = (req, res, next) => {
 router.get('/', checkAuth, (req, res) => {
   console.log("req.user from router");
   console.log(req.user);
-  res.render('profile', { user: req.user });
+  res.render('profile', { user: req.user.dataValues });
 });
+
+
+
 
 module.exports = router;
 

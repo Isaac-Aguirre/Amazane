@@ -9,6 +9,9 @@ router.get('/login', (req, res) => {
 // auth logout
 router.get('/logout', (req, res) => {
 
+  req.logout();
+  res.redirect('/')
+
   //
   // handle with passport
   //
@@ -16,7 +19,7 @@ router.get('/logout', (req, res) => {
   res.send('logging out');
 });
 
-router.get('/register', (req, res) => {
+router.get('/register' ,(req, res) => {
   res.render('register', { userId: 0 });
 });
 

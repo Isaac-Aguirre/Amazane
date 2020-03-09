@@ -58,6 +58,23 @@ passport.deserializeUser((id, done) => {
 
 module.exports = passport;
 
+module.exports += {
+  ensureAuthenticated: (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('auth/login') // if not auth
+  },
+
+  forwardAuthenticated: (req, res, next) => {
+    if (!req.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('/profile/');  // if auth    
+  }
+
+}
+
 
 // profile.id
 // profile.emails[0].value

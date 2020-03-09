@@ -35,6 +35,17 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Global variables
+app.use(function (req,res, next) {
+  res.locals.login = req.isAuthenticated();
+  if(req.user){
+    res.locals.globalUsername = req.user.dataValues.username;
+  }
+  console.log("this is the req")
+  console.log(req.user);
+  next();
+  });
+
 // Routes
 app.use(express.static(path.join(__dirname,"public")));
 app.use('/', require('./routes/html-routes.js'));
