@@ -16,11 +16,13 @@
 * Will deploy via Heroku & use JawsDB
 
 ## Features to be implemented
+* Semi-fancy landing page
 * Search feature & Pagination of search results
 * Shopping cart & Add to cart
 * Login/Register (+ Separate route for administrator features)
 * Checkout route
-* "Accounts" : profile (edit address, etc), orders, "log out", "payment methods"
+* Profile page, "log out", "payment methods"
+* Order confirmation & Order confirmation
 
 ## Database
 ```

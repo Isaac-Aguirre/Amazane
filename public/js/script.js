@@ -7,31 +7,6 @@ $(document).ready(() => {
   $(".parallax").parallax();
   $(".carousel").carousel();
 
-  $.ajax({
-    url: "/apii/getCurrentCat",
-    method: "GET"
-  }).then(function(cat) {
-    if (cat != "all") {
-      $("#all-tab").removeClass("active");
-      switch (cat) {
-        case "shoes":
-          $("#shoes-tab").addClass("active");
-          break;
-        case "sweatshirts":
-          $("#sweatshirts-tab").addClass("active");
-          break;
-        case "bottoms":
-          $("#bottoms-tab").addClass("active");
-          break;
-        case "t-shirts":
-          $("#t-shirts-tab").addClass("active");
-          break;
-        case "accessories":
-          $("#accessories-tab").addClass("active");
-          break;
-      }
-    }
-  });
   let cart = [];
   if (localStorage.cart) cart = JSON.parse(localStorage.getItem("cart"));
   $("#cart-count").html(cart.length);
