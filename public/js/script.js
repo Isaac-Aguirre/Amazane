@@ -3,6 +3,10 @@ $(document).ready(() => {
   $('select').formSelect();
   $(".dropdown-trigger").dropdown();
 
+  let cart = [];
+  if(localStorage.cart) cart = JSON.parse(localStorage.getItem('cart'));
+  $("#cart-count").html(cart.length);
+
   $(document).on('keypress',function(event) {
     if(event.which == 13 && $("#search_input").val().trim() != "") {
       event.preventDefault();
@@ -10,15 +14,12 @@ $(document).ready(() => {
     }
   });
 
-  $('#cart-page-button').on('click', function(event) {
+  $('#cart-page-button').on('click', async function(event) {
     event.preventDefault();
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    if(cart === null) {
-      let cart = [];
+    let cart = [];
+    if(localStorage.cart) {
+      cart = await JSON.parse(localStorage.getItem('cart'));
     }
-
-    console.log("cart:")
-    console.log(cart);
 
     $.get({
       url: '/updateCart',
@@ -48,19 +49,37 @@ $(document).ready(() => {
       cart.push(itemID);
       localStorage.setItem('cart', JSON.stringify(cart));
     }
+    $("#cart-count").html(cart.length);
   })
 
   $(".delete-btn").on("click", function(event) {
     event.preventDefault();
 
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    let cart_id = cart.map(item => item.id);
-    let ind = cart_id.indexOf($(this).data('id'));
+    let cart = [];
+    let ind = -1;
+
+    if(localStorage.cart) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+      let cart_id = cart.map(item => item.id);
+      ind = cart_id.indexOf($(this).data('id'));
+    }
 
     cart.splice(ind,1);
     
     localStorage.setItem('cart', JSON.stringify(cart));
-    location.reload();
+
+    $.get({
+      url: '/updateCart',
+      data: {
+        'cart': cart
+      }
+    })
+    .then(function(data) {
+      location.replace('/cart');
+    })
+    .catch(function(err) {
+      if(err) throw err;
+    });
   })
 
   $('.order-btn').on('click', function(event) {
@@ -116,8 +135,6 @@ $(document).ready(() => {
       state: state,
       isRegistered: true
     }
-
-    console.log(newUser);
 
     $.ajax({
       url: '/api/users/' + $(this).data('id'),
