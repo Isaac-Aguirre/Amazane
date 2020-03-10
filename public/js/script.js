@@ -2,15 +2,15 @@ $(document).ready(() => {
   // Initialization
   $('select').formSelect();
   $(".dropdown-trigger").dropdown();
-  
+
   $(document).on('keypress',function(event) {
     if(event.which == 13 && $("#search_input").val().trim() != "") {
       event.preventDefault();
       location.replace(`/${$("#search_input").val().trim()}`);
     }
-});
+  });
 
-  $('#cart-page-button').on('click', async function(event) {
+  $('#cart-page-button').on('click', function(event) {
     event.preventDefault();
     let cart = JSON.parse(localStorage.getItem('cart'));
     if(cart === null) {
@@ -36,6 +36,7 @@ $(document).ready(() => {
 
 
   $(".add-to-cart").on("click", function(event) {
+    event.preventDefault();
     itemID = $(this).data('id');
     var cart = [];
     if(localStorage.cart){
@@ -47,7 +48,35 @@ $(document).ready(() => {
       cart.push(itemID);
       localStorage.setItem('cart', JSON.stringify(cart));
     }
+  })
 
+  $(".delete-btn").on("click", function(event) {
+    event.preventDefault();
+
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    let cart_id = cart.map(item => item.id);
+    let ind = cart_id.indexOf($(this).data('id'));
+
+    cart.splice(ind,1);
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    location.reload();
+  })
+
+  $('.order-btn').on('click', function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      url: '/order',
+      method: 'GET'
+    })
+    .then(function(data) {
+      localStorage.setItem('cart', []);
+      location.replace('/confirm-order/' + data);
+    })
+    .catch(function(err) {
+      if(err) throw err;
+    });
   })
 
   $(".search-button").on('click', function(event) {
@@ -77,10 +106,6 @@ $(document).ready(() => {
     const city = $("#city_input").val().trim();
     const state = $("#state_input").val();
     
-    //
-    // validation
-    //
-   
     const newUser = {
       first_name: firstname,
       last_name: lastname,

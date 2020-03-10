@@ -1,20 +1,52 @@
-<table style="margin: 0 auto;">
-    <thead>
-        <tr>
-            <th>Quantity</th>
-            <th>Item Name</th>
-            <th>Item Price</th>
-            <th>Delete Button</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="row">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col s3 center-align">
+                <b>Image</b>
+            </div>
+            <div class="col s2 center-align">
+                <b>Price</b>
+            </div>
+            <div class="col s5 center-align">
+                <b>Item</b>
+            </div>
+            <div class="col s2">
+
+            </div>
+        </div>
+        <hr>
         {{#each cart}}
-        <tr>
-            <td>{{id}}</td>
-            <td>{{name}}</td>
-            <td>{{price}}</td>
-            <td><a href="#" class="delete-btn">Delete</a></td>
-        </tr>
+        <div class="row">
+            <div class="col s3 center-align">
+                <img style="height: 50px;" class="responsive-img" src="{{picture}}">
+            </div>
+            <div class="col s2 center-align">
+                {{price}}
+            </div>
+            <div class="col s5 center-align">
+                {{name}}
+
+            </div>
+            <div class="col s2 center-align">
+                <a href="#" class="delete-btn btn right" data-id="{{id}}"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
         {{/each}}
-    </tbody>
-</table>
+        <hr>
+        <div class="row">
+            <div class="col s3 right-align">
+                <b>Total:</b>
+            </div>
+            <div class="col s2 center-align">
+                <b>${{total}}</b>
+            </div>
+            <div class="col s7 right-align">
+                {{#if login}}
+                <a href="/order" class="order-btn btn btn-small right pink lighten-2">Place the order</a>
+                {{else}}
+                <a href="/auth/google" class="order-btn btn btn-small disabled right pink lighten-2">Login to order</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
