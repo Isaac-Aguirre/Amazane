@@ -10,6 +10,38 @@ $(document).ready(() => {
     }
 });
 
+  $('#cart-page-button').on('click', function(event) {
+    let cart = [];
+    if(localStorage.cart){
+      cart = JSON.parse(localStorage.getItem('cart'));
+      console.log(cart);
+      $.ajax({
+        url: '/cart',
+        method: 'GET',
+        data: {
+          cart: cart
+        }
+      }).catch(function(err){ if(err) throw err; })
+      return
+    }
+  })
+
+
+  $(".add-to-cart").on("click", function(event) {
+    itemID = $(this).data('id');
+    var cart = [];
+    if(localStorage.cart){
+      cart = JSON.parse(localStorage.getItem('cart'));
+      cart.push(itemID);
+      localStorage.cart = JSON.stringify(cart);
+    }
+    else{
+      cart.push(itemID);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+  })
+
   $(".search-button").on('click', function(event) {
     event.preventDefault();
     location.replace(`/${$("#search_input").val().trim()}`);

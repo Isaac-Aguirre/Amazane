@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const db = require('../models');
-let cart = [];
 
 router.post('/apii/cart', (req, res) => {
   cart.push(req.body);
+  console.log(cart);
   res.status(204).end();
 });
 
@@ -26,6 +26,14 @@ router.get('/apii/cart', (req, res) => {
 })
 
 router.get('/cart', (req, res) => {
+  console.log(req.body)
+  let cartItems = req.body;
+  let cart = []
+  for(let i = 0; i < cartItems.length; i++){
+    db.Item.findOne({ where:{ id : req.body.id } }).then( (dbItem) => {
+      cart.push(dbItem.dataValues);
+    });
+  }
   res.render('cart', { cart: cart });
 });
 
@@ -42,13 +50,13 @@ router.get("/:name?", (req, res) => {
             return true;
           }
         });
-        res.render("shop", { items: hbsObj, cart: cart });
+        res.render("shop", { items: hbsObj});
       }
       else {
-        res.render("shop", { items: hbsObj, cart: cart });
+        res.render("shop", { items: hbsObj });
       }
     } else {
-      res.render("shop", { cart: cart });
+      res.render("shop", {  });
     }
   });
 });
