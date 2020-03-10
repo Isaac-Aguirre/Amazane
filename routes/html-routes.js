@@ -7,6 +7,10 @@ let total = { val: 0 };
 
 let currentCat = "all";
 
+router.get("/apii/getCurrentCat", (req, res) => {
+  res.json(currentCat);
+});
+
 router.get("/apii/getCartCount", (req, res) => {
   let count = cart.length + "";
   res.send(count);
@@ -31,6 +35,10 @@ router.get("/apii/getCartCount", (req, res) => {
 // router.get('/apii/cart', (req, res) => {
 //   res.json(cart);
 // })
+
+router.get('/land', (req, res) => {
+  res.render('index');
+})
 
 router.get("/updateCart", async (req, res) => {
   let cartItems = req.query.cart;
@@ -83,8 +91,7 @@ function updateCartByItemIndex(itemIndex, total, cart) {
 
 router.get("/order", async (req, res) => {
   let orders = await db.Order.findAll();
-
-  let newOrderNumber = "1";
+  let newOrderNumber = orders.length + 1;
 
   for (let i = 0; i < cart.length; i++) {
     db.Order.create({
@@ -95,7 +102,7 @@ router.get("/order", async (req, res) => {
     });
   }
 
-  res.send(newOrderNumber);
+  res.status(204).end();
 });
 
 router.get("/confirm-order/:orderNumber", (req, res) => {

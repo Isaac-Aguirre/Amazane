@@ -23,7 +23,7 @@
     }
 
     .body-container {
-      margin-bottom: 70px;
+      margin-bottom: 60px;
     }
   </style>
 
@@ -33,30 +33,30 @@
 <body>
   <nav>
     <div class="nav-wrapper cyan lighten-2">
-      <a href='/' class="brand-logo">Amazane</a>
+      <a href='/land' class="brand-logo center pink-text lighten-2" style="font-weight: bold; font-family:'Times New Roman', Times, serif; opacity: 0.7;">AmaZane</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/">Shop</a></li>
+        <li><a href="/"><b>Shop</b></a></li>
         {{#if login}}
-        <li><a href="/profile">{{globalUsername}}</a></li>
-        <li><a href="/auth/logout">Logout</a></li>
+        <li><a href="/profile"><b>Profile</b></a></li>
+        <li><a href="/auth/logout"><b>Log out</b></a></li>
         {{else}}
-        <li><a href="/auth/google">Login with <i class="fab fa-google"></i>oogle+</a></li>
+        <li><a href="/auth/google"><b>Login with </b><i class="fab fa-google"></i><b>oogle+</b></a></li>
         {{/if}}
         <li><a id="cart-page-button"><i class="fas fa-shopping-cart"></i>(<span id="cart-count"></span>)</a></li>
       </ul>
     </div>
   </nav>
 
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="/">Shop</a></li>
+  <ul class="sidenav pink lighten-4" id="mobile-demo">
+    <li><a href="/"><b>Shop</b></a></li>
     {{#if login}}
-    <li><a href="/profile">{{globalUsername}}</a></li>
-    <li><a href="/auth/logout">Logout</a></li>
+    <li><a href="/profile"><b>Profile</b></a></li>
+    <li><a href="/auth/logout"><b class="text-white">Log out</b></a></li>
     {{else}}
-    <li><a href="/auth/google">Login with <i class="fab fa-google"></i>oogle+</a></li>
+    <li><a href="/auth/google"><b>Login with </b><i class="fab fa-google"></i><b>oogle+</b></a></li>
     {{/if}}
-    <li><a href='/cart'>Cart</a></li>
+    <li><a href='/cart'><b>Cart</b></a></li>
   </ul>
 
   <div class="body-container">
