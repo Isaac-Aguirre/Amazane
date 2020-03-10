@@ -1,14 +1,42 @@
-<h1>Profile Page</h1>
+<div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col s12 m6 offset-m3">
+            <div class="card">
+                <div class="card-image">
+                    <div class="row">
+                        <div class="col s6 offset-s3">
+                            <img id='img' src="https://i.imgur.com/nxviNi6.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s6 right-align">
+                            <b>
+                                <p>Name: </p>
+                                <p>Nickname: </p>
+                                <p>Email:</p>
+                            </b>
+                        </div>
+                        <div class="col s6 left-align">
+                            <b>
+                                <p>{{user.first_name}} {{user.last_name}}</p>
+                                <p>{{user.nickname}}</p>
+                                <p>{{user.email}}</p>
+                            </b>
+                        </div>
+                        <div class="col s6 offset-s3 center-align" style="margin-top: 25px;">
+                            <h5 style="color: #F26389"><b>Address</b></h5>
+                            <hr>
+                            <p>{{user.address}}, {{user.city}},{{user.state}}</p>
+                        </div>
+                    </div>
 
-<div class="container">
-    <ul>
-        <li id="first">First Name: {{user.first_name}}</li>
-        <li id="last">Last Name: {{user.last_name}}</li>
-        <li id="username">Nickname: {{user.nickname}}</li>
-        <li id="email">email: {{user.email}}</li>
-        <li id="address">Address: {{user.address}}</li>
-        <li id="city">City: {{user.city}}</li>
-        <li id="state">State: {{user.state}}</li>
-    </ul>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/edit-profile" class="btn pink lighten-2">EDIT PROFILE</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-

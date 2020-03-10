@@ -5,6 +5,8 @@ const db = require("../models");
 let cart = [];
 let total = { val: 0 };
 
+let currentCat = "all";
+
 router.get("/apii/getCartCount", (req, res) => {
   let count = cart.length + "";
   res.send(count);
@@ -43,6 +45,11 @@ router.get("/updateCart", async (req, res) => {
   } else {
     res.json(cart);
   }
+});
+
+router.post('/updateCategory/:category', (req, res) => {
+  currentCat = req.params.category;
+  res.status(204).end();
 });
 
 router.get("/cart", (req, res) => {
@@ -104,20 +111,53 @@ router.get("/confirm-order/:orderNumber", (req, res) => {
   });
 });
 
-router.get("/:name?", (req, res) => {
+router.get("/:query?", (req, res) => {
   db.Item.findAll({}).then(function(items) {
     let hbsObj = items.map(item => {
       return item.dataValues;
     });
+
+    // if category is set, refine hbsObj
+    if (currentCat != "all") {
+      switch (currentCat) {
+        case "shoes":
+          hbsObj = hbsObj.filter(item => {
+            return item.category == "shoes";
+          });
+          break;
+        case "sweatshirts":
+          hbsObj = hbsObj.filter(item => {
+            return item.category == "sweatshirts";
+          });
+          break;
+        case "bottoms":
+          hbsObj = hbsObj.filter(item => {
+            return item.category == "bottoms";
+          });
+          break;
+        case "t-shirts":
+          hbsObj = hbsObj.filter(item => {
+            return item.category == "t-shirts";
+          });
+          break;
+        case "accessories":
+          hbsObj = hbsObj.filter(item => {
+            return item.category == "accessories";
+          });
+          break;
+      }
+    }
+
+    // render
     if (hbsObj.length) {
-      if (req.params.name) {
+      if (req.params.query) {
         hbsObj = hbsObj.filter(item => {
           let words = item.name.split(" ");
           words = words.map(word => {
             return word.toLowerCase();
           });
 
-          if (words.indexOf(req.params.name.toLowerCase()) != -1) {
+          if (words.indexOf(req.params.query.toLowerCase()) != -1) {
             return true;
           }
         });
@@ -128,6 +168,7 @@ router.get("/:name?", (req, res) => {
     } else {
       res.render("shop", {});
     }
+    
   });
 });
 

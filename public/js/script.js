@@ -2,6 +2,8 @@ $(document).ready(() => {
   // Initialization
   $('select').formSelect();
   $(".dropdown-trigger").dropdown();
+  $('.sidenav').sidenav();
+  $('.tabs').tabs();
 
   let cart = [];
   if(localStorage.cart) cart = JSON.parse(localStorage.getItem('cart'));
@@ -13,6 +15,19 @@ $(document).ready(() => {
       location.replace(`/${$("#search_input").val().trim()}`);
     }
   });
+
+  $(".category-button").on('click', function(event) {
+    let category = $(this).data('cat');
+    console.log(category);
+
+    $.post({
+      url: '/updateCategory/' + category
+    }).then(function(data) {
+      location.reload();
+    }).catch(function(err) {
+      if(err) throw err;
+    })
+  })
 
   $('#cart-page-button').on('click', async function(event) {
     event.preventDefault();

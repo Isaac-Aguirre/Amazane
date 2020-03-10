@@ -13,6 +13,19 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js'></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
+  <style>
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      /* Set the fixed height of the footer here */
+    }
+
+    .body-container {
+      margin-bottom: 70px;
+    }
+  </style>
 
   <title>Amazane</title>
 </head>
@@ -46,33 +59,20 @@
     <li><a href='/cart'>Cart</a></li>
   </ul>
 
-  {{{body}}}
+  <div class="body-container">
+    {{{body}}}
+  </div>
 
-  <footer class="page-footer pink lighten-2">
+
+
+  <footer class="footer footer-copyright pink lighten-2 valign-wrapper">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Project Amazane</h5>
-          <p class="grey-text text-lighten-4">Simple Web shop made with <i class="fab fa-node-js fa-1x"></i> Node.js,
-            Express, and MySQL</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">FAQ</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">About us</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        © 2020 UCLA Bootcamp Full Stack Flex
-        <a class="grey-text text-lighten-4 right" target="_blank" href="https://bootcamp.uclaextension.edu/coding/">Link
-          to Bootcamp</a>
-      </div>
+      © 2020 UCLA Bootcamp Full Stack Flex
+      <a class="grey-text text-lighten-4 right" target="_blank" href="https://bootcamp.uclaextension.edu/coding/">Link
+        to Bootcamp</a>
     </div>
   </footer>
+
   <script src="/js/script.js"></script>
 </body>
 
