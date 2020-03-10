@@ -27,7 +27,7 @@
 ## Database
 ```
 TABLE `User`:
-  id, first_name, last_name, username, email, address, (+password?)
+  userID, googleID, first_name, last_name, nickname, email, address, city, state, isRegistered
 
 TABLE `Item`:
   id(sku), name, price, category, quantity(in stock), img-link 
