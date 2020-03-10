@@ -10,20 +10,28 @@ $(document).ready(() => {
     }
 });
 
-  $('#cart-page-button').on('click', function(event) {
-    let cart = [];
-    if(localStorage.cart){
-      cart = JSON.parse(localStorage.getItem('cart'));
-      console.log(cart);
-      $.ajax({
-        url: '/cart',
-        method: 'GET',
-        data: {
-          cart: cart
-        }
-      }).catch(function(err){ if(err) throw err; })
-      return
+  $('#cart-page-button').on('click', async function(event) {
+    event.preventDefault();
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    if(cart === null) {
+      let cart = [];
     }
+
+    console.log("cart:")
+    console.log(cart);
+
+    $.get({
+      url: '/updateCart',
+      data: {
+        'cart': cart
+      }
+    })
+    .then(function(data) {
+      location.replace('/cart');
+    })
+    .catch(function(err) {
+      if(err) throw err;
+    });
   })
 
 

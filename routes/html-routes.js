@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const db = require('../models');
+let cart = [];
 
 router.post('/apii/cart', (req, res) => {
   cart.push(req.body);
@@ -25,17 +26,33 @@ router.get('/apii/cart', (req, res) => {
   res.json(cart);
 })
 
-router.get('/cart', (req, res) => {
-  console.log(req.body)
-  let cartItems = req.body;
-  let cart = []
-  for(let i = 0; i < cartItems.length; i++){
-    db.Item.findOne({ where:{ id : req.body.id } }).then( (dbItem) => {
-      cart.push(dbItem.dataValues);
-    });
+router.get('/updateCart', async (req, res) => {
+  let cartItems = req.query.cart;
+  for(let i = 0; i < cartItems.length; i++) {
+    await getItemInCart(cartItems[i], cart);
   }
-  res.render('cart', { cart: cart });
+
+  res.json(cart);
 });
+
+router.get('/cart', (req, res) => {
+  res.render('cart', { cart: cart });
+})
+
+function getItemInCart(itemIndex, cart) {
+  return new Promise(function(resolve, reject) {
+    db.Item.findOne({
+      where: {
+        id: itemIndex
+      }
+    }).then((dbItem) => {
+      cart.push(dbItem.dataValues);
+      return resolve(dbItem.dataValues);
+    }).catch((err) => {
+      if(err) return reject(err);
+    });
+  });
+}
 
 router.get("/:name?", (req, res) => {
   db.Item.findAll({}).then(function(items) {
