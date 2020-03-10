@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const db = require('../models');
 let cart = [];
+let total = { val: 0 };
 
 router.post('/apii/cart', (req, res) => {
   cart.push(req.body);
+  console.log(cart);
   res.status(204).end();
 });
 
@@ -17,16 +19,74 @@ router.delete('/apii/cart/:id', (req,res) => {
 
 })
 
-router.get('/getCartCount', (req, res) => {
-  res.send(cart.length);
-});
-
 router.get('/apii/cart', (req, res) => {
   res.json(cart);
 })
 
+router.get('/updateCart', async (req, res) => {
+  let cartItems = req.query.cart;
+  cart = [];
+  total.val = 0;
+  for(let i = 0; i < cartItems.length; i++) {
+    await updateCartByItemIndex(cartItems[i], total, cart);
+  }
+
+  res.json(cart);
+});
+
 router.get('/cart', (req, res) => {
-  res.render('cart', { cart: cart });
+  res.render('cart', { 
+    cart: cart,
+    total: total.val
+  });
+});
+
+function updateCartByItemIndex(itemIndex, total, cart) {
+  return new Promise(function(resolve, reject) {
+    db.Item.findOne({
+      where: {
+        id: itemIndex
+      }
+    }).then((dbItem) => {
+      cart.push(dbItem.dataValues);
+      total.val += dbItem.dataValues.price;
+      console.log(total.val);
+      return resolve(dbItem.dataValues);
+    }).catch((err) => {
+      if(err) return reject(err);
+    });
+  });
+}
+
+router.get('/order', async (req, res) => {
+  let orders = await db.Order.findAll();
+
+  let newOrderNumber = '1';
+
+  for (let i = 0; i < cart.length; i++) {
+    db.Order.create({
+      orderNumber: newOrderNumber,
+      userID: req.user.dataValues.id,
+      itemID: cart[i].id,
+      quantity: 1
+    });
+  }
+
+  res.send(newOrderNumber);
+});
+
+router.get('/confirm-order/:orderNumber', (req, res) => {
+  let cart_copy = Object.assign([], cart);
+  console.log(cart_copy);
+  let total_copy = total.val;
+  total.val = 0;
+  cart = [];
+  res.render('confirm-order', { 
+    user: req.user.dataValues,
+    cart: cart_copy,
+    total: total_copy,
+    orderNumber: req.params.orderNumber
+  });
 });
 
 router.get("/:name?", (req, res) => {
@@ -42,13 +102,13 @@ router.get("/:name?", (req, res) => {
             return true;
           }
         });
-        res.render("shop", { items: hbsObj, cart: cart });
+        res.render("shop", { items: hbsObj});
       }
       else {
-        res.render("shop", { items: hbsObj, cart: cart });
+        res.render("shop", { items: hbsObj });
       }
     } else {
-      res.render("shop", { cart: cart });
+      res.render("shop", {  });
     }
   });
 });

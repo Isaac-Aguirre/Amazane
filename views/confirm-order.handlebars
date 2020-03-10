@@ -1,0 +1,52 @@
+<div class="row" style="margin-top: 40px;">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="row">
+      <div class="col s12 center-align">
+        <i class="fas fa-check-circle fa-10x" style="color: #F26389"></i>
+        <br>
+        <h4 class="pink-text lighten-2">Thank you for your order!</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6 offset-m1 bordered">
+    <h4 class="pink-text lighten-2">Order number: #{{orderNumber}}</h4>
+    <hr>
+    <p>We are currently processing your order, and we will <strike>not</strike> email you with confirmation shortly.</p>
+    <p>Thank you again, for your purchase.</p>
+    <br>
+    <h4 class="pink-text lighten-2">Delivery details</h4>
+    <hr>
+    <p><b>Delivery for:</b></p>
+    <p>{{user.first_name}} {{user.last_name}}</p>
+    <p>email: {{user.email}}</p>
+    <br>
+    <p><b>Address</b></p>
+    <p>{{user.address}}, {{user.city}}, {{user.state}}</p>
+    <br>
+    <h4 class="pink-text lighten-2">Order Summary</h4>
+    <hr>
+    {{#each cart}}
+    <div class="row">
+      <div class="col s4 center-align">
+        <img style="height: 50px;" class="responsive-img" src="{{picture}}">
+      </div>
+      <div class="col s6 center-align valign-wrapper">
+        {{name}}
+      </div>
+      <div class="col s2 center-align">
+        {{price}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="col s12 m4 left-align bordered">
+    <h4 class="pink-text lighten-2">Summary</h4>
+    <hr>
+    <p>Sub-total: <span class="right-align">${{total}}</span></p>
+    <p>Never Day Delivery: <span class="right-align">Free</span></p>
+    <hr>
+    <p><b>Total: <span class="right-align">${{total}}</span></b></p>
+  </div>
+
+</div>
