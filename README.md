@@ -1,4 +1,4 @@
-# ONLINE E COMMERCE SHOP
+# AmaZane
 
 ## Online Shop that sells:
 * shoes
