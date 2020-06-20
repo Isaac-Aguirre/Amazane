@@ -1,5 +1,12 @@
 # AmaZane
 
+### This website is for an example nothing more please do not enter private info when login
+
+### In order to  run
+* npm install
+* change config folder to fit your sql needs
+* when server is running go to amazane/api/pushInventory to get inventory running
+
 ## Online Shop that sells:
 * shoes
 * t-shirts
