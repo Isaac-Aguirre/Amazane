@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "myPass",
+    "password": "password",
     "database": "Amazane",
     "host": "127.0.0.1",
     "dialect": "mysql",
@@ -9,14 +9,17 @@
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "password",
     "database": "database_test", 
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "username": "t63aapn01q8zzaxx",
+    "password": "yrcay11hw7glosnb",
+    "database": "nxjprcvchz6s2j61", 
+    "host": "d9c88q3e09w6fdb2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "operatorsAliases": false
   }
